@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Samrat Sadhukhan Portfolio</title>
+<style>
+* {margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Tahoma, sans-serif;}
+body {background:#000; color:#fff; line-height:1.6; overflow-x:hidden;}
+a {color:#0ff; text-decoration:none;}
+a:hover {text-decoration:underline;}
+canvas {position:fixed; top:0; left:0; width:100%; height:100%; z-index:0;}
+.content {position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 50px 20px;}
+header {text-align:center; margin-bottom:50px;}
+header h1 {font-size:3rem; margin-bottom:10px; color:#0ff;}
+header p {color:#ccc; font-size:1.1rem; margin-bottom:5px;}
+h2 {font-size:2rem; border-bottom:2px solid #0ff; padding-bottom:5px; margin:30px 0 20px;}
+h3 {font-size:1.5rem; margin-bottom:10px; color:#0ff;}
+p, li {font-size:1.1rem; color:#ccc;}
+ul {padding-left:20px; margin-bottom:15px;}
+.event {border:1px solid #0ff; background: rgba(0,0,0,0.6); border-radius:12px; padding:25px; margin-bottom:25px; box-shadow: 0 0 15px rgba(0,255,255,0.2); transition: transform 0.3s, box-shadow 0.3s;}
+.event:hover {transform: translateY(-5px); box-shadow: 0 0 25px rgba(0,255,255,0.4);}
+.skills {display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:15px; margin-top:10px;}
+.skill {background-color:#0ff; color:#000; padding:15px; border-radius:10px; text-align:center; font-weight:bold; box-shadow: 0 0 10px rgba(0,255,255,0.5); transition: transform 0.3s, box-shadow 0.3s;}
+.skill:hover {transform: translateY(-5px); box-shadow: 0 0 20px rgba(0,255,255,0.8);}
+.contact {text-align:center; margin-top:50px;}
+.contact a {display:inline-block; margin:10px; padding:10px 25px; background:#0ff; color:#000; border-radius:8px; font-weight:bold; transition:0.3s;}
+.contact a:hover {background:#0aa;}
+img, video {max-width:100%; border-radius:8px; margin-bottom:10px;}
+.audio-controls {text-align:center; margin:20px 0;}
+.audio-controls button, .audio-controls input {margin:5px; padding:10px; border:none; border-radius:8px; background:#0ff; color:#000; font-weight:bold; cursor:pointer;}
+.audio-controls button:hover {background:#0aa;}
+@media (max-width:768px) {
+    header h1 {font-size:2.2rem;}
+    h2 {font-size:1.6rem;}
+    h3 {font-size:1.3rem;}
+    .event {padding:20px;}
+}
+</style>
+</head>
+<body>
+<canvas id="stars"></canvas>
+<div class="content">
+    <header>
+        <h1>Samrat Sadhukhan</h1>
+        <p>CFD Researcher | Data & AI Enthusiast | Event & Project Management</p>
+        <p>Email: <a href="mailto:samratacedemics@gmail.com">samratacedemics@gmail.com</a> | Phone: +91-8910838253</p>
+    </header>
+
+    <section>
+        <h2>Objective</h2>
+        <p>A motivated Chemical Engineering student with expertise in <strong>Computational Fluid Dynamics (CFD)</strong>, <strong>Machine Learning</strong>, <strong>Deep Learning</strong>, and <strong>Data Analytics</strong>. Experienced in project execution, event management, and cross-disciplinary teamwork. Seeking opportunities in <strong>Project Management</strong>, <strong>CFD/Simulation</strong>, or <strong>Data Analytics</strong> where I can combine technical and managerial skills to deliver impactful results.</p>
+    </section>
+
+    <section>
+        <h2>Technical Projects</h2>
+        <div class="event">
+            <h3>CFD Internship Projects – IIT Dharwad</h3>
+            <ul>
+                <li>💧 Bubble generation in a T-junction – studied gas-liquid interface dynamics.</li>
+                <li>🌊 Laminar flow in 3D circular tube – validated velocity profiles with analytical models.</li>
+                <li>🔥 Turbulent Al₂O₃-water nanofluid flow – single vs two-phase model comparisons for heat transfer.</li>
+                <li>♻️ Shell-and-tube heat exchanger – CFD simulation & <strong>LMTD validation</strong>.</li>
+            </ul>
+        </div>
+        <div class="event">
+            <h3>Slug-Flow Boiling in Microchannels (Research)</h3>
+            <ul>
+                <li>Performed in-depth numerical analysis of slug flow dynamics.</li>
+                <li>Focused on <strong>heat transfer enhancement</strong> in microchannel geometries.</li>
+            </ul>
+        </div>
+        <div class="event">
+            <h3>Plastic Waste to Electricity Reactor (Ongoing)</h3>
+            <ul>
+                <li>Developing a sustainable <strong>reactor model</strong> to convert plastic waste into energy.</li>
+            </ul>
+        </div>
+        <div class="event">
+            <h3>Sales Analytics Dashboard</h3>
+            <p><strong>Tools:</strong> Python (NumPy, Pandas, Matplotlib), SQL, Power BI</p>
+            <ul>
+                <li>Built automated dashboards to track and visualize sales KPIs.</li>
+                <li>Improved decision-making with real-time reporting and analytics.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>Event Showcase</h2>
+        <div class="event">
+            <h3>UTurn 2024</h3>
+            <p><strong>Footfall:</strong> 2500+ attendees</p>
+            <ul>
+                <li>Designed logos, posters, websites, and creative themes.</li>
+                <li>Managed budgeting, vendors (sound, lighting, stage, merchandise).</li>
+                <li>Led <strong>crowd management</strong>, logistics, and legal permissions.</li>
+            </ul>
+        </div>
+        <div class="event">
+            <h3>SynThesis 2024 – Freshers</h3>
+            <p><strong>Footfall:</strong> 200+ attendees</p>
+            <ul>
+                <li>Created visual branding (logos, T-shirts, banners, teasers).</li>
+                <li>Coordinated vendors for DJs, lighting, stage, and food.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>Skills</h2>
+        <div class="skills">
+            <div class="skill">CFD Simulation (ANSYS Fluent)</div>
+            <div class="skill">Heat & Mass Transfer</div>
+            <div class="skill">Machine Learning (ML)</div>
+            <div class="skill">Deep Learning (DL)</div>
+            <div class="skill">Data Analysis (Python, SQL, Power BI)</div>
+            <div class="skill">Python & Java Programming</div>
+            <div class="skill">Event Planning</div>
+            <div class="skill">Budget & Vendor Management</div>
+            <div class="skill">Creative Design</div>
+            <div class="skill">Crowd Management</div>
+            <div class="skill">Communication & Leadership</div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Achievements</h2>
+        <ul>
+            <li>Organized successful university fests with <strong>2500+ attendees</strong>.</li>
+            <li>Represented Jadavpur University in cultural collaborations.</li>
+            <li>Completed multiple <strong>CFD research projects</strong> at IIT Dharwad.</li>
+            <li>Designed sales dashboards with <strong>actionable insights</strong>.</li>
+        </ul>
+    </section>
+
+    <section class="audio-controls">
+        <h2>Background Music</h2>
+        <audio id="music" loop>
+            <source src="your_music_link.mp3" type="audio/mpeg">
+            Your browser does not support audio.
+        </audio>
+        <button id="playBtn">Play</button>
+        <input type="range" id="volume" min="0" max="1" step="0.05" value="0.5">
+    </section>
+
+    <section class="contact">
+        <h2>Contact</h2>
+        <a href="mailto:samratacedemics@gmail.com">Email Me</a>
+        <a href="tel:+918910838253">Call Me</a>
+        <a href="https://www.linkedin.com/in/YOUR-LINKEDIN" target="_blank">LinkedIn</a>
+        <a href="https://github.com/YOUR-GITHUB" target="_blank">GitHub</a>
+    </section>
+</div>
+
+<script>
+const canvas = document.getElementById('stars');
+const ctx = canvas.getContext('2d');
+let width = canvas.width = window.innerWidth;
+let height = canvas.height = window.innerHeight;
+window.addEventListener('resize', () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+});
+class Particle {
+    constructor(){ this.reset(); }
+    reset(){
+        this.x = Math.random() * width;
+        this.y = height + Math.random() * height;
+        this.size = Math.random() * 2 + 1;
+        this.speed = Math.random() * 0.5 + 0.1;
+        this.opacity = Math.random() * 0.5 + 0.3;
+    }
+    update(){
+        this.y -= this.speed;
+        this.opacity -= 0.0003;
+        if(this.y < -10 || this.opacity <= 0) this.reset();
+    }
+    draw(){
+        ctx.beginPath();
+        ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+        ctx.fillStyle=`rgba(255,255,255,${this.opacity})`;
+        ctx.shadowBlur=4;
+        ctx.shadowColor="white";
+        ctx.fill();
+    }
+}
+const particles=[];
+for(let i=0;i<600;i++) particles.push(new Particle());
+function animate(){
+    ctx.clearRect(0,0,width,height);
+    for(let p of particles){p.update();p.draw();}
+    requestAnimationFrame(animate);
+}
+animate();
+
+// Music controls
+const music=document.getElementById('music');
+const playBtn=document.getElementById('playBtn');
+const volume=document.getElementById('volume');
+playBtn.addEventListener('click',()=>{
+    if(music.paused){music.play();playBtn.textContent="Pause";}
+    else {music.pause();playBtn.textContent="Play";}
+});
+volume.addEventListener('input',()=>{music.volume=volume.value;});
+</script>
+</body>
+</html>
