@@ -27,9 +27,29 @@ ul {padding-left:20px; margin-bottom:15px;}
 .contact a {display:inline-block; margin:10px; padding:10px 25px; background:#0ff; color:#000; border-radius:8px; font-weight:bold; transition:0.3s;}
 .contact a:hover {background:#0aa;}
 img, video {max-width:100%; border-radius:8px; margin-bottom:10px;}
-.audio-controls {text-align:center; margin:20px 0;}
-.audio-controls button, .audio-controls input {margin:5px; padding:10px; border:none; border-radius:8px; background:#0ff; color:#000; font-weight:bold; cursor:pointer;}
-.audio-controls button:hover {background:#0aa;}
+/* --- Music Button --- */
+.audio-controls {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 10;
+}
+.audio-controls button {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 50%;
+    background:#0ff;
+    color:#000;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,255,255,0.6);
+    transition: 0.3s;
+}
+.audio-controls button:hover {
+    background:#0aa;
+    color:#fff;
+}
 @media (max-width:768px) {
     header h1 {font-size:2.2rem;}
     h2 {font-size:1.6rem;}
@@ -58,9 +78,9 @@ img, video {max-width:100%; border-radius:8px; margin-bottom:10px;}
             <h3>CFD Internship Projects – IIT Dharwad</h3>
             <ul>
                 <li>💧 Bubble generation in a T-junction – studied gas-liquid interface dynamics.</li>
-                <li>🌊 Laminar flow in 3D circular tube – validated velocity profiles with analytical models.</li>
-                <li>🔥 Turbulent Al₂O₃-water nanofluid flow – single vs two-phase model comparisons for heat transfer.</li>
-                <li>♻️ Shell-and-tube heat exchanger – CFD simulation & <strong>LMTD validation</strong>.</li>
+                <li> Laminar flow in 3D circular tube – validated velocity profiles with analytical models.</li> 
+                <li> Turbulent Al₂O₃-water nanofluid flow – single vs two-phase model comparisons for heat transfer.</li> 
+                <li> Shell-and-tube heat exchanger – CFD simulation & <strong>LMTD validation</strong>.</li> 
             </ul>
         </div>
         <div class="event">
@@ -134,16 +154,6 @@ img, video {max-width:100%; border-radius:8px; margin-bottom:10px;}
         </ul>
     </section>
 
-    <section class="audio-controls">
-        <h2>Background Music</h2>
-        <audio id="music" loop>
-            <source src="your_music_link.mp3" type="audio/mpeg">
-            Your browser does not support audio.
-        </audio>
-        <button id="playBtn">Play</button>
-        <input type="range" id="volume" min="0" max="1" step="0.05" value="0.5">
-    </section>
-
     <section class="contact">
         <h2>Contact</h2>
         <a href="mailto:samratacedemics@gmail.com">Email Me</a>
@@ -151,6 +161,15 @@ img, video {max-width:100%; border-radius:8px; margin-bottom:10px;}
         <a href="https://www.linkedin.com/in/YOUR-LINKEDIN" target="_blank">LinkedIn</a>
         <a href="https://github.com/YOUR-GITHUB" target="_blank">GitHub</a>
     </section>
+</div>
+
+<!-- Music Controls -->
+<div class="audio-controls">
+    <audio id="music" loop>
+        <source src="your_music_link.mp3" type="audio/mpeg">
+        Your browser does not support audio.
+    </audio>
+    <button id="playBtn">▶</button>
 </div>
 
 <script>
@@ -197,12 +216,17 @@ animate();
 // Music controls
 const music=document.getElementById('music');
 const playBtn=document.getElementById('playBtn');
-const volume=document.getElementById('volume');
+music.volume=0.4; // Fixed at 40%
+
 playBtn.addEventListener('click',()=>{
-    if(music.paused){music.play();playBtn.textContent="Pause";}
-    else {music.pause();playBtn.textContent="Play";}
+    if(music.paused){
+        music.play();
+        playBtn.textContent="⏸";
+    } else {
+        music.pause();
+        playBtn.textContent="▶";
+    }
 });
-volume.addEventListener('input',()=>{music.volume=volume.value;});
 </script>
 </body>
 </html>
