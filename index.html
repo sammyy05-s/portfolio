@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Samrat Sadhukhan Portfolio</title>
 <style>
-/* Base layout */
 * {margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Tahoma, sans-serif;}
 body {background:#000; color:#fff; line-height:1.6; overflow-x:hidden;}
-
-/* Links and content */
 a {color:#0ff; text-decoration:none;}
 a:hover {text-decoration:underline;}
-canvas#stars {position:fixed; top:0; left:0; width:100%; height:100%; z-index:0;}
-canvas#wave {position:fixed; left:0; right:0; bottom:0; height:220px; z-index:2; pointer-events:none;}
-.content {position: relative; z-index: 3; max-width: 1100px; margin: 0 auto; padding: 50px 20px;}
+canvas {position:fixed; top:0; left:0; width:100%; height:100%; z-index:0;}
+.content {position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 50px 20px;}
 header {text-align:center; margin-bottom:50px;}
 header h1 {font-size:3rem; margin-bottom:10px; color:#0ff;}
 header p {color:#ccc; font-size:1.1rem; margin-bottom:5px;}
@@ -31,57 +27,129 @@ ul {padding-left:20px; margin-bottom:15px;}
 .contact a {display:inline-block; margin:10px; padding:10px 25px; background:#0ff; color:#000; border-radius:8px; font-weight:bold; transition:0.3s;}
 .contact a:hover {background:#0aa;}
 img, video {max-width:100%; border-radius:8px; margin-bottom:10px;}
-
 /* --- Music Button --- */
 .audio-controls {
     position: fixed;
-    bottom: 20px;
-    left: 20px;
+    bottom: 50px;
+    left: 40px;
     z-index: 10;
 }
 .audio-controls button {
-    width:56px;
-    height:56px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding: 0;
+    padding: 18px;
     border: none;
     border-radius: 50%;
-    background: rgba(0,255,255,0.95);
+    background:#0ff;
     color:#000;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 8px 24px rgba(0,255,255,0.12);
-    transition: transform 0.12s ease, background 0.12s;
+    box-shadow: 0 0 15px rgba(0,255,255,0.6);
+    transition: 0.3s;
 }
-.audio-controls button:hover { transform: translateY(-4px); background: #00cccc; color:#fff; }
-
-/* small screens */
+.audio-controls button:hover {
+    background:#0aa;
+    color:#fff;
+}
 @media (max-width:768px) {
     header h1 {font-size:2.2rem;}
     h2 {font-size:1.6rem;}
     h3 {font-size:1.3rem;}
     .event {padding:20px;}
-    canvas#wave {height:160px;}
+}
+
+.topbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(10px);
+  z-index: 20;
+  box-shadow: 0 0 10px rgba(0,255,255,0.4);
+}
+
+.topbar ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 15px 0;
+  margin: 0;
+  gap: 30px;
+}
+
+.topbar li a {
+  color: #ccc;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 8px 15px;
+  border-radius: 8px;
+  transition: 0.3s;
+  position: relative;
+}
+
+.topbar li a::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  width: 0;
+  height: 3px;
+  background: #0ff;
+  border-radius: 2px;
+  transition: 0.3s;
+  transform: translateX(-50%);
+}
+
+.topbar li a.active,
+.topbar li a:hover {
+  color: #0ff;
+  box-shadow: 0 0 15px #0ff;
+}
+
+.topbar li a.active::after {
+  width: 60%;
+}
+.arc-glow {
+  position: absolute;
+  bottom: 30;
+  width: 100%;
+  height: 25px;
+  background: radial-gradient(ellipse at center, rgba(0,255,255,0.4) 0%, transparent 70%);
+  border-radius: 50% / 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+body {
+  scroll-behavior: smooth;
+  padding-top: 70px; /* topbar height */
 }
 </style>
 </head>
 <body>
-<!-- star background -->
+<nav class="topbar">
+  <ul>
+    <li><a href="#home" class="active">Home</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="arc-glow"></div>
+</nav>
+
+<!-- Background canvases -->
 <canvas id="stars"></canvas>
+<canvas id="backgroundWave"></canvas>
+<canvas id="circleWave"></canvas>
 
-<!-- wave visualizer canvas (front of stars, behind content) -->
-<canvas id="wave"></canvas>
-
-<!-- content -->
 <div class="content">
     <header>
         <h1>Samrat Sadhukhan</h1>
         <p>CFD Researcher | Data & AI Enthusiast | Event & Project Management</p>
         <p>Email: <a href="mailto:samratacedemics@gmail.com">samratacedemics@gmail.com</a> | Phone: +91-8910838253</p>
     </header>
+
 
     <section>
         <h2>Objective</h2>
@@ -94,9 +162,9 @@ img, video {max-width:100%; border-radius:8px; margin-bottom:10px;}
             <h3>CFD Internship Projects – IIT Dharwad</h3>
             <ul>
                 <li>💧 Bubble generation in a T-junction – studied gas-liquid interface dynamics.</li>
-                <li> Laminar flow in 3D circular tube – validated velocity profiles with analytical models.</li>
-                <li> Turbulent Al₂O₃-water nanofluid flow – single vs two-phase model comparisons for heat transfer.</li>
-                <li> Shell-and-tube heat exchanger – CFD simulation & <strong>LMTD validation</strong>.</li>
+                <li> Laminar flow in 3D circular tube – validated velocity profiles with analytical models.</li> 
+                <li> Turbulent Al₂O₃-water nanofluid flow – single vs two-phase model comparisons for heat transfer.</li> 
+                <li> Shell-and-tube heat exchanger – CFD simulation & <strong>LMTD validation</strong>.</li> 
             </ul>
         </div>
         <div class="event">
@@ -152,6 +220,8 @@ img, video {max-width:100%; border-radius:8px; margin-bottom:10px;}
             <div class="skill">Deep Learning (DL)</div>
             <div class="skill">Data Analysis (Python, SQL, Power BI)</div>
             <div class="skill">Python & Java Programming</div>
+            <div class="skill">Front End development and React</div>
+
             <div class="skill">Event Planning</div>
             <div class="skill">Budget & Vendor Management</div>
             <div class="skill">Creative Design</div>
@@ -181,272 +251,174 @@ img, video {max-width:100%; border-radius:8px; margin-bottom:10px;}
 
 <!-- Music Controls -->
 <div class="audio-controls">
-    <audio id="music" loop crossorigin="anonymous">
-        <!-- Replace with your music path or URL -->
+    <audio id="music" loop>
         <source src="your_music_link.mp3" type="audio/mpeg">
         Your browser does not support audio.
     </audio>
-    <button id="playBtn" aria-label="Play music">▶</button>
+    <button id="playBtn">▶</button>
 </div>
 
 <script>
-/* -----------------------------
-   Stars background (unchanged)
-   ----------------------------- */
-const starsCanvas = document.getElementById('stars');
-const sctx = starsCanvas.getContext('2d');
-let sw = starsCanvas.width = window.innerWidth;
-let sh = starsCanvas.height = window.innerHeight;
+// ---- STAR BACKGROUND ----
+const starCanvas = document.getElementById('stars');
+const sCtx = starCanvas.getContext('2d');
+let sw = starCanvas.width = window.innerWidth;
+let sh = starCanvas.height = window.innerHeight;
 window.addEventListener('resize', () => {
-    sw = starsCanvas.width = window.innerWidth;
-    sh = starsCanvas.height = window.innerHeight;
-    resizeWaveCanvas();
+    sw = starCanvas.width = window.innerWidth;
+    sh = starCanvas.height = window.innerHeight;
 });
-
-class Star {
-    constructor(){
-        this.reset();
-    }
+class Particle {
+    constructor(){ this.reset(); }
     reset(){
         this.x = Math.random() * sw;
-        this.y = Math.random() * sh;
-        this.size = Math.random() * 2 + 0.4;
-        this.speed = Math.random() * 0.5 + 0.05;
-        this.opacity = Math.random() * 0.7 + 0.1;
+        this.y = sh + Math.random() * sh;
+        this.size = Math.random() * 2 + 1;
+        this.speed = Math.random() * 0.5 + 0.1;
+        this.opacity = Math.random() * 0.5 + 0.3;
     }
     update(){
         this.y -= this.speed;
-        if(this.y < -10) this.reset();
+        this.opacity -= 0.0003;
+        if(this.y < -10 || this.opacity <= 0) this.reset();
     }
     draw(){
-        sctx.beginPath();
-        sctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
-        sctx.fillStyle = `rgba(255,255,255,${this.opacity})`;
-        sctx.fill();
+        sCtx.beginPath();
+        sCtx.arc(this.x,this.y,this.size,0,Math.PI*2);
+        sCtx.fillStyle=`rgba(255,255,255,${this.opacity})`;
+        sCtx.shadowBlur=4;
+        sCtx.shadowColor="white";
+        sCtx.fill();
     }
 }
-const stars = [];
-for(let i=0;i<350;i++) stars.push(new Star());
+const particles=[]; for(let i=0;i<600;i++) particles.push(new Particle());
 function animateStars(){
-    sctx.clearRect(0,0,sw,sh);
-    for(const st of stars){ st.update(); st.draw(); }
+    sCtx.clearRect(0,0,sw,sh);
+    for(let p of particles){p.update();p.draw();}
     requestAnimationFrame(animateStars);
 }
 animateStars();
 
-/* -----------------------------
-   Wave visualizer
-   ----------------------------- */
-const waveCanvas = document.getElementById('wave');
-const wctx = waveCanvas.getContext('2d');
-function resizeWaveCanvas(){
-    waveCanvas.width = window.innerWidth;
-    // keep a fixed pixel height for crispness, but CSS controls displayed height
-    waveCanvas.height = 220 * (window.devicePixelRatio || 1);
+// ---- BACKGROUND SINE WAVE ----
+const bgCanvas = document.getElementById('backgroundWave');
+const bgCtx = bgCanvas.getContext('2d');
+bgCanvas.width = window.innerWidth;
+bgCanvas.height = window.innerHeight;
+window.addEventListener('resize', () => {
+  bgCanvas.width = window.innerWidth;
+  bgCanvas.height = window.innerHeight;
+});
+let t = 0;
+function drawBackgroundWave() {
+  bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+  bgCtx.beginPath();
+  bgCtx.strokeStyle = "rgba(0,191,255,0.5)";
+  bgCtx.lineWidth = 2;
+  for (let x = 0; x < bgCanvas.width; x++) {
+    let y = bgCanvas.height/2 + Math.sin((x + t) * 0.02) * 50;
+    bgCtx.lineTo(x, y);
+  }
+  bgCtx.stroke();
+  t += 2;
+  requestAnimationFrame(drawBackgroundWave);
 }
-resizeWaveCanvas();
+drawBackgroundWave();
 
-let audioCtx, analyser, sourceNode;
-const audioEl = document.getElementById('music');
-const playBtn = document.getElementById('playBtn');
-
-// lock volume at 40%
-audioEl.volume = 0.4;
-audioEl.preload = "auto";
-
-// create WebAudio on user gesture
-function initAudio() {
-    if (audioCtx) return;
-    try {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        analyser = audioCtx.createAnalyser();
-        analyser.fftSize = 2048;
-        analyser.smoothingTimeConstant = 0.8; // smoother react
-        sourceNode = audioCtx.createMediaElementSource(audioEl);
-        sourceNode.connect(analyser);
-        analyser.connect(audioCtx.destination);
-        // create data arrays
-        freqData = new Uint8Array(analyser.frequencyBinCount);
-        timeData = new Uint8Array(analyser.fftSize);
-    } catch (e) {
-        console.warn('Web Audio API not supported:', e);
-    }
-}
-
-let freqData, timeData;
-let frame = 0;
-
-function getEnergy() {
-    // compute overall energy from frequency bins (RMS style)
-    analyser.getByteFrequencyData(freqData);
-    let sum = 0;
-    // focus on low-mid freq bins for beats (0..2000Hz roughly)
-    const len = freqData.length;
-    const cutoff = Math.floor(len * 0.25); // low/mid portion
-    for (let i = 0; i < cutoff; i++) {
-        sum += freqData[i] * freqData[i];
-    }
-    const rms = Math.sqrt(sum / (cutoff || 1));
-    // normalize to 0..1 using expected max (255)
-    return Math.min(1, rms / 140); // tuned empirically
-}
-
-function drawWave() {
-    if (!analyser) {
-        // draw a subtle idle sine when analyser not ready
-        drawIdleWave();
-        requestAnimationFrame(drawWave);
-        return;
-    }
-
-    analyser.getByteTimeDomainData(timeData); // for waveform if needed
-    const energy = getEnergy(); // 0..1
-    const width = waveCanvas.width;
-    const height = waveCanvas.height;
-    wctx.clearRect(0, 0, width, height);
-
-    // parameters
-    const baseAmplitude = 18;      // baseline amplitude in px
-    const energyAmp = 120;        // how much energy amplifies the wave
-    const amplitude = baseAmplitude + energy * energyAmp;
-    const frequency = 0.008 + 0.02 * Math.sin(frame * 0.0023); // slow vary
-    const speed = 0.9 + energy * 0.8;
-
-    // layered waves (3 layers, deeper to front) for sea-like look
-    const layers = [
-        {color: 'rgba(10,40,80,0.18)', offset: 0.9, ampMult: 0.6, lineWidth: 1},
-        {color: 'rgba(0,150,200,0.22)', offset: 0.6, ampMult: 1.0, lineWidth: 1.6},
-        {color: 'rgba(30,200,230,0.5)', offset: 0.3, ampMult: 1.6, lineWidth: 2.2}
-    ];
-
-    // vertical baseline (so wave sits above bottom)
-    const baseY = height * 0.6;
-
-    for (let li = 0; li < layers.length; li++) {
-        const layer = layers[li];
-        wctx.beginPath();
-        wctx.lineWidth = layer.lineWidth * (window.devicePixelRatio || 1);
-        wctx.strokeStyle = layer.color;
-        wctx.shadowBlur = 30 * (li === layers.length - 1 ? 1.2 : 0.6);
-        wctx.shadowColor = layer.color;
-        // starting point
-        for (let x = 0; x <= width; x++) {
-            const normX = x / width;
-            // base sine
-            const theta = (normX * Math.PI * 2 / frequency) + (frame * 0.02 * speed);
-            // optional waveform modulation from timeData (adds micro-variation)
-            const tdIndex = Math.floor(normX * (timeData.length - 1));
-            const tdFactor = (timeData[tdIndex] - 128) / 128; // -1..1
-            const y = baseY + Math.sin(theta) * amplitude * layer.ampMult * (0.6 + 0.4 * Math.abs(tdFactor)) 
-                      + Math.cos(theta * 1.7) * amplitude * 0.08 * layer.ampMult;
-            if (x === 0) wctx.moveTo(x, y);
-            else wctx.lineTo(x, y - layer.offset * 20); // vertical offset per layer
-        }
-        wctx.stroke();
-    }
-
-    // subtle fill under the main wave (gradient)
-    const grad = wctx.createLinearGradient(0, baseY, 0, height);
-    grad.addColorStop(0, "rgba(30,200,230,0.10)");
-    grad.addColorStop(1, "rgba(0,20,40,0.00)");
-    wctx.fillStyle = grad;
-    wctx.beginPath();
-    // use main layer path again to fill
-    for (let x = 0; x <= width; x++) {
-        const normX = x / width;
-        const theta = (normX * Math.PI * 2 / frequency) + (frame * 0.02 * speed);
-        const tdIndex = Math.floor(normX * (timeData.length - 1));
-        const tdFactor = (timeData[tdIndex] - 128) / 128;
-        const y = baseY + Math.sin(theta) * amplitude * layers[1].ampMult * (0.6 + 0.4 * Math.abs(tdFactor));
-        if (x === 0) wctx.moveTo(x, y);
-        else wctx.lineTo(x, y);
-    }
-    wctx.lineTo(width, height);
-    wctx.lineTo(0, height);
-    wctx.closePath();
-    wctx.fill();
-
-    frame++;
-    requestAnimationFrame(drawWave);
+// ---- CIRCLE SINE WAVE ----
+const circleCanvas = document.getElementById('circleWave');
+const cCtx = circleCanvas.getContext('2d');
+circleCanvas.width = window.innerWidth;
+circleCanvas.height = window.innerHeight;
+window.addEventListener('resize', () => {
+  circleCanvas.width = window.innerWidth;
+  circleCanvas.height = window.innerHeight;
+});
+let audioCtx, analyser, source, dataArray;
+function drawCircleWave() {
+  cCtx.clearRect(0,0,circleCanvas.width,circleCanvas.height);
+  const centerX = 70; // near button
+  const centerY = window.innerHeight - 80;
+  const radius = 28;
+  cCtx.beginPath();
+  cCtx.strokeStyle = "aqua";
+  cCtx.lineWidth = 2;
+  for (let angle=0; angle < Math.PI*2; angle+=0.02){
+    const i = Math.floor((angle / (2*Math.PI)) * (dataArray?dataArray.length:1));
+    const amplitude = dataArray ? dataArray[i]/5 : 0;
+    const r = radius + Math.sin(angle*6 + t*0.05) * amplitude;
+    const x = centerX + r * Math.cos(angle);
+    const y = centerY + r * Math.sin(angle);
+    if (angle===0) cCtx.moveTo(x,y); else cCtx.lineTo(x,y);
+  }
+  cCtx.closePath();
+  cCtx.stroke();
+  requestAnimationFrame(drawCircleWave);
 }
 
-function drawIdleWave() {
-    const width = waveCanvas.width;
-    const height = waveCanvas.height;
-    wctx.clearRect(0,0,width,height);
-    const baseY = height * 0.6;
-    const amp = 12;
-    wctx.beginPath();
-    wctx.lineWidth = 1.4;
-    wctx.strokeStyle = 'rgba(30,200,230,0.18)';
-    for (let x = 0; x <= width; x++) {
-        const theta = x * 0.01 + frame * 0.01;
-        const y = baseY + Math.sin(theta) * amp;
-        if (x === 0) wctx.moveTo(x,y); else wctx.lineTo(x,y);
-    }
-    wctx.stroke();
-    frame++;
+// ---- AUDIO CONTROLS ----
+const music=document.getElementById('music');
+const playBtn=document.getElementById('playBtn');
+music.volume=0.4;
+playBtn.addEventListener('click', async ()=>{
+  if(!audioCtx){
+    audioCtx = new (window.AudioContext||window.webkitAudioContext)();
+    analyser = audioCtx.createAnalyser();
+    source = audioCtx.createMediaElementSource(music);
+    source.connect(analyser);
+    analyser.connect(audioCtx.destination);
+    analyser.fftSize = 256;
+    dataArray = new Uint8Array(analyser.frequencyBinCount);
+    drawCircleWave();
+  }
+  if(music.paused){
+    await music.play();
+    playBtn.textContent="⏸";
+  } else {
+    music.pause();
+    playBtn.textContent="▶";
+  }
+});
+function updateAudioData(){
+  if(analyser) analyser.getByteFrequencyData(dataArray);
+  requestAnimationFrame(updateAudioData);
 }
-
-/* -----------------------------
-   Play/Pause UI
-   ----------------------------- */
-playBtn.addEventListener('click', async () => {
-    // init AudioContext on first user gesture
-    initAudio();
-
-    if (!audioEl.paused) {
-        audioEl.pause();
-        playBtn.textContent = '▶';
-        return;
+updateAudioData();
+const links = document.querySelectorAll('.topbar a');
+links.forEach(link => {
+  link.addEventListener('click', () => {
+    links.forEach(l => l.classList.remove('active'));
+    link.classList.add('active');
+  });
+});
+const lin = document.querySelectorAll('.topbar a');
+lin.forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if(target){
+      window.scrollTo({
+        top: target.offsetTop - 70, // offset for fixed topbar
+        behavior: 'smooth'
+      });
     }
-
-    // resume audio context if suspended (some browsers)
-    if (audioCtx && audioCtx.state === 'suspended') {
-        await audioCtx.resume();
-    }
-
-    try {
-        await audioEl.play();
-        playBtn.textContent = '⏸';
-        // start draw loop if not already
-        if (typeof analyser !== 'undefined') {
-            requestAnimationFrame(drawWave);
-        } else {
-            requestAnimationFrame(drawWave); // draws idle and then becomes reactive after init
-        }
-    } catch (err) {
-        console.error('Playback failed:', err);
-    }
+    lin.forEach(l => l.classList.remove('active'));
+    lin.classList.add('active');
+  });
 });
 
-// If audio ends, reset button
-audioEl.addEventListener('ended', () => {
-    playBtn.textContent = '▶';
-});
-
-/* -----------------------------
-   Auto-start idle animation
-   ----------------------------- */
-requestAnimationFrame(drawWave);
-
-/* -----------------------------
-   Helpful hint: if user changes track src dynamically
-   ----------------------------- */
-function setAudioSrc(url){
-    audioEl.src = url;
-    audioEl.load();
-    audioEl.volume = 0.4;
-}
-
-/* -----------------------------
-   Optional: resume audio context on visibility change
-   ----------------------------- */
-document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible' && audioCtx && audioCtx.state === 'suspended' && !audioEl.paused) {
-        audioCtx.resume();
+// Highlight active link on scroll
+const sections = document.querySelectorAll('section');
+window.addEventListener('scroll', () => {
+  const scrollPos = window.scrollY + 80; // offset for topbar
+  sections.forEach(sec => {
+    if(scrollPos >= sec.offsetTop && scrollPos < sec.offsetTop + sec.offsetHeight){
+      links.forEach(l => l.classList.remove('active'));
+      const activeLink = document.querySelector(`.topbar a[href="#${sec.id}"]`);
+      if(activeLink) activeLink.classList.add('active');
     }
+  });
 });
+
 </script>
 </body>
 </html>
