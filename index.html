@@ -161,25 +161,14 @@ body {
         <div class="event">
             <h3>CFD Internship Projects – IIT Dharwad</h3>
             <ul>
-                <li>💧 Bubble generation in a T-junction – studied gas-liquid interface dynamics.</li>
+                <li> Bubble generation in a T-junction – studied gas-liquid interface dynamics.</li>
                 <li> Laminar flow in 3D circular tube – validated velocity profiles with analytical models.</li> 
                 <li> Turbulent Al₂O₃-water nanofluid flow – single vs two-phase model comparisons for heat transfer.</li> 
                 <li> Shell-and-tube heat exchanger – CFD simulation & <strong>LMTD validation</strong>.</li> 
+                <li>Slug-Flow Boiling in Microchannels</li>
             </ul>
-        </div>
-        <div class="event">
-            <h3>Slug-Flow Boiling in Microchannels (Research)</h3>
-            <ul>
-                <li>Performed in-depth numerical analysis of slug flow dynamics.</li>
-                <li>Focused on <strong>heat transfer enhancement</strong> in microchannel geometries.</li>
-            </ul>
-        </div>
-        <div class="event">
-            <h3>Plastic Waste to Electricity Reactor (Ongoing)</h3>
-            <ul>
-                <li>Developing a sustainable <strong>reactor model</strong> to convert plastic waste into energy.</li>
-            </ul>
-        </div>
+     
+        
         <div class="event">
             <h3>Sales Analytics Dashboard</h3>
             <p><strong>Tools:</strong> Python (NumPy, Pandas, Matplotlib), SQL, Power BI</p>
@@ -312,7 +301,7 @@ let t = 0;
 function drawBackgroundWave() {
   bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
   bgCtx.beginPath();
-  bgCtx.strokeStyle = "rgba(0,191,255,0.1)";
+  bgCtx.strokeStyle = "rgba(0,191,255,0.15)";
   bgCtx.lineWidth = 2;
   for (let x = 0; x < bgCanvas.width; x++) {
     let y = bgCanvas.height/2 + Math.sin((x + t) * 0.02) * 50;
@@ -422,5 +411,6 @@ window.addEventListener('scroll', () => {
 </script>
 </body>
 </html>
+
 
 
