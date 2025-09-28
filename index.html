@@ -6,7 +6,7 @@
 <title>Samrat Sadhukhan Portfolio</title>
 <style>
 * {margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Tahoma, sans-serif;}
-body {background:#000; color:#fff; line-height:1.6; overflow-x:hidden;}
+body {background:#000; color:#fff; line-height:1.6; overflow-x:hidden; scroll-behavior:smooth; padding-top:70px;}
 a {color:#0ff; text-decoration:none;}
 a:hover {text-decoration:underline;}
 canvas {position:fixed; top:0; left:0; width:100%; height:100%; z-index:0;}
@@ -27,102 +27,24 @@ ul {padding-left:20px; margin-bottom:15px;}
 .contact a {display:inline-block; margin:10px; padding:10px 25px; background:#0ff; color:#000; border-radius:8px; font-weight:bold; transition:0.3s;}
 .contact a:hover {background:#0aa;}
 img, video {max-width:100%; border-radius:8px; margin-bottom:10px;}
-/* --- Music Button --- */
-.audio-controls {
-    position: fixed;
-    bottom: 50px;
-    left: 43px;
-    z-index: 10;
-}
-.audio-controls button {
-    padding: 18px;
-    border: none;
-    border-radius: 50%;
-    background:#0ff;
-    color:#000;
-    font-size: 1.2rem;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 0 15px rgba(0,255,255,0.6);
-    transition: 0.3s;
-}
-.audio-controls button:hover {
-    background:#0aa;
-    color:#fff;
-}
-@media (max-width:768px) {
-    header h1 {font-size:2.2rem;}
-    h2 {font-size:1.6rem;}
-    h3 {font-size:1.3rem;}
-    .event {padding:20px;}
-}
-
-.topbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(10px);
-  z-index: 20;
-  box-shadow: 0 0 10px rgba(0,255,255,0.4);
-}
-
-.topbar ul {
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  padding: 15px 0;
-  margin: 0;
-  gap: 30px;
-}
-
-.topbar li a {
-  color: #ccc;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1.1rem;
-  padding: 8px 15px;
-  border-radius: 8px;
-  transition: 0.3s;
-  position: relative;
-}
-
-.topbar li a::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  bottom: -5px;
-  width: 0;
-  height: 3px;
-  background: #0ff;
-  border-radius: 2px;
-  transition: 0.3s;
-  transform: translateX(-50%);
-}
-
+/* Music Button */
+.audio-controls {position: fixed; bottom: 50px; left: 43px; z-index: 10;}
+.audio-controls button {padding: 18px; border: none; border-radius: 50%; background:#0ff; color:#000; font-size: 1.2rem; font-weight: bold; cursor: pointer; box-shadow: 0 0 15px rgba(0,255,255,0.6); transition: 0.3s;}
+.audio-controls button:hover {background:#0aa; color:#fff;}
+/* Topbar */
+.topbar {position: fixed; top: 0; width: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(10px); z-index: 20; box-shadow: 0 0 10px rgba(0,255,255,0.4);}
+.topbar ul {display: flex; justify-content: center; list-style: none; padding: 15px 0; margin: 0; gap: 30px;}
+.topbar li a {color: #ccc; text-decoration: none; font-weight: bold; font-size: 1.1rem; padding: 8px 15px; border-radius: 8px; transition: 0.3s; position: relative;}
+.topbar li a::after {content: ''; position: absolute; left: 50%; bottom: -5px; width: 0; height: 3px; background: #0ff; border-radius: 2px; transition: 0.3s; transform: translateX(-50%);}
 .topbar li a.active,
-.topbar li a:hover {
-  color: #0ff;
-  box-shadow: 0 0 15px #0ff;
-}
-
-.topbar li a.active::after {
-  width: 60%;
-}
-.arc-glow {
-  position: absolute;
-  bottom: 30;
-  width: 100%;
-  height: 25px;
-  background: radial-gradient(ellipse at center, rgba(0,255,255,0.4) 0%, transparent 70%);
-  border-radius: 50% / 100%;
-  pointer-events: none;
-  z-index: 10;
-}
-
-body {
-  scroll-behavior: smooth;
-  padding-top: 70px; /* topbar height */
+.topbar li a:hover {color: #0ff; box-shadow: 0 0 15px #0ff;}
+.topbar li a.active::after {width: 60%;}
+.arc-glow {position: absolute; bottom: -10px; width: 100%; height: 25px; background: radial-gradient(ellipse at center, rgba(0,255,255,0.4) 0%, transparent 70%); border-radius: 50% / 100%; pointer-events: none; z-index: 10;}
+@media (max-width:768px) {
+  header h1 {font-size:2.2rem;}
+  h2 {font-size:1.6rem;}
+  h3 {font-size:1.3rem;}
+  .event {padding:20px;}
 }
 </style>
 </head>
@@ -133,6 +55,7 @@ body {
     <li><a href="#projects">Projects</a></li>
     <li><a href="#events">Events</a></li>
     <li><a href="#skills">Skills</a></li>
+    <li><a href="#hobbies">Hobbies</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="arc-glow"></div>
@@ -144,42 +67,25 @@ body {
 <canvas id="circleWave"></canvas>
 
 <div class="content">
-    <header>
+    <header id="home">
         <h1>Samrat Sadhukhan</h1>
         <p>CFD Researcher | Data & AI Enthusiast | Event & Project Management</p>
         <p>Email: <a href="mailto:samratacedemics@gmail.com">samratacedemics@gmail.com</a> | Phone: +91-8910838253</p>
     </header>
 
-
-    <section>
-        <h2>Objective</h2>
-        <p>A motivated Chemical Engineering student with expertise in <strong>Computational Fluid Dynamics (CFD)</strong>, <strong>Machine Learning</strong>, <strong>Deep Learning</strong>, and <strong>Data Analytics</strong>. Experienced in project execution, event management, and cross-disciplinary teamwork. Seeking opportunities in <strong>Project Management</strong>, <strong>CFD/Simulation</strong>, or <strong>Data Analytics</strong> where I can combine technical and managerial skills to deliver impactful results.</p>
-    </section>
-
-    <section>
+    <section id="projects">
         <h2>Technical Projects</h2>
         <div class="event">
             <h3>CFD Internship Projects – IIT Dharwad</h3>
             <ul>
-                <li>💧 Bubble generation in a T-junction – studied gas-liquid interface dynamics.</li>
-                <li> Laminar flow in 3D circular tube – validated velocity profiles with analytical models.</li> 
-                <li> Turbulent Al₂O₃-water nanofluid flow – single vs two-phase model comparisons for heat transfer.</li> 
-                <li> Shell-and-tube heat exchanger – CFD simulation & <strong>LMTD validation</strong>.</li> 
+                <li> Bubble generation in a T-junction – studied gas-liquid interface dynamics.</li>
+                <li>Laminar flow in 3D circular tube – validated velocity profiles with analytical models.</li>
+                <li>Turbulent Al₂O₃-water nanofluid flow – single vs two-phase model comparisons for heat transfer.</li>
+                <li>Shell-and-tube heat exchanger – CFD simulation & <strong>LMTD validation</strong>.</li>
             </ul>
         </div>
-        <div class="event">
-            <h3>Slug-Flow Boiling in Microchannels (Research)</h3>
-            <ul>
-                <li>Performed in-depth numerical analysis of slug flow dynamics.</li>
-                <li>Focused on <strong>heat transfer enhancement</strong> in microchannel geometries.</li>
-            </ul>
-        </div>
-        <div class="event">
-            <h3>Plastic Waste to Electricity Reactor (Ongoing)</h3>
-            <ul>
-                <li>Developing a sustainable <strong>reactor model</strong> to convert plastic waste into energy.</li>
-            </ul>
-        </div>
+     
+       
         <div class="event">
             <h3>Sales Analytics Dashboard</h3>
             <p><strong>Tools:</strong> Python (NumPy, Pandas, Matplotlib), SQL, Power BI</p>
@@ -190,14 +96,14 @@ body {
         </div>
     </section>
 
-    <section>
+    <section id="events">
         <h2>Event Showcase</h2>
         <div class="event">
             <h3>UTurn 2024</h3>
             <p><strong>Footfall:</strong> 2500+ attendees</p>
             <ul>
                 <li>Designed logos, posters, websites, and creative themes.</li>
-                <li>Managed budgeting, vendors (sound, lighting, stage, merchandise).</li>
+                <li>Managed budgeting, vendors (bands), POC for Trilogue.</li>
                 <li>Led <strong>crowd management</strong>, logistics, and legal permissions.</li>
             </ul>
         </div>
@@ -211,7 +117,7 @@ body {
         </div>
     </section>
 
-    <section>
+    <section id="skills">
         <h2>Skills</h2>
         <div class="skills">
             <div class="skill">CFD Simulation (ANSYS Fluent)</div>
@@ -220,8 +126,7 @@ body {
             <div class="skill">Deep Learning (DL)</div>
             <div class="skill">Data Analysis (Python, SQL, Power BI)</div>
             <div class="skill">Python & Java Programming</div>
-            <div class="skill">Front End development and React</div>
-
+            <div class="skill">Front End Development & React</div>
             <div class="skill">Event Planning</div>
             <div class="skill">Budget & Vendor Management</div>
             <div class="skill">Creative Design</div>
@@ -230,17 +135,20 @@ body {
         </div>
     </section>
 
-    <section>
-        <h2>Achievements</h2>
-        <ul>
-            <li>Organized successful university fests with <strong>2500+ attendees</strong>.</li>
-            <li>Represented Jadavpur University in cultural collaborations.</li>
-            <li>Completed multiple <strong>CFD research projects</strong> at IIT Dharwad.</li>
-            <li>Designed sales dashboards with <strong>actionable insights</strong>.</li>
-        </ul>
+    <section id="hobbies">
+        <h2>Hobbies & Interests</h2>
+        <p>
+            I nurture a deep appreciation for artistic and cultural expression. My passion for music is strongly rooted in the 
+            <strong>Hindi and Urdu hip-hop Rap culture</strong>, while also extending to global hip-hop movements that reflect 
+            diverse cultural narratives. Beyond music, I am devoted to the <strong>visual arts</strong>, particularly painting, 
+            which allows me to blend reflection with creativity. I also pursue <strong>script writing</strong> and 
+            <strong>drama</strong>, drawn to stories that capture the complexities of society. Complementing these is my 
+            admiration for <strong>classic cinema</strong>, especially films with socialist themes or explorations of 
+            socio-political questions told with depth and nuance.
+        </p>
     </section>
 
-    <section class="contact">
+    <section id="contact" class="contact">
         <h2>Contact</h2>
         <a href="mailto:samratacedemics@gmail.com">Email Me</a>
         <a href="tel:+918910838253">Call Me</a>
@@ -260,165 +168,129 @@ body {
 
 <script>
 // ---- STAR BACKGROUND ----
-const starCanvas = document.getElementById('stars');
-const sCtx = starCanvas.getContext('2d');
-let sw = starCanvas.width = window.innerWidth;
-let sh = starCanvas.height = window.innerHeight;
-window.addEventListener('resize', () => {
-    sw = starCanvas.width = window.innerWidth;
-    sh = starCanvas.height = window.innerHeight;
-});
-class Particle {
-    constructor(){ this.reset(); }
-    reset(){
-        this.x = Math.random() * sw;
-        this.y = sh + Math.random() * sh;
-        this.size = Math.random() * 2 + 1;
-        this.speed = Math.random() * 0.5 + 0.1;
-        this.opacity = Math.random() * 0.5 + 0.3;
-    }
-    update(){
-        this.y -= this.speed;
-        this.opacity -= 0.0003;
-        if(this.y < -10 || this.opacity <= 0) this.reset();
-    }
-    draw(){
-        sCtx.beginPath();
-        sCtx.arc(this.x,this.y,this.size,0,Math.PI*2);
-        sCtx.fillStyle=`rgba(255,255,255,${this.opacity})`;
-        sCtx.shadowBlur=4;
-        sCtx.shadowColor="white";
-        sCtx.fill();
-    }
-}
-const particles=[]; for(let i=0;i<600;i++) particles.push(new Particle());
-function animateStars(){
-    sCtx.clearRect(0,0,sw,sh);
-    for(let p of particles){p.update();p.draw();}
-    requestAnimationFrame(animateStars);
-}
-animateStars();
+const starCanvas=document.getElementById('stars'); const sCtx=starCanvas.getContext('2d');
+let sw=starCanvas.width=window.innerWidth; let sh=starCanvas.height=window.innerHeight;
+window.addEventListener('resize',()=>{sw=starCanvas.width=window.innerWidth;sh=starCanvas.height=window.innerHeight;});
+class Particle{constructor(){this.reset();} reset(){this.x=Math.random()*sw;this.y=sh+Math.random()*sh;this.size=Math.random()*2+1;this.speed=Math.random()*0.5+0.1;this.opacity=Math.random()*0.5+0.3;} update(){this.y-=this.speed;this.opacity-=0.0003;if(this.y<-10||this.opacity<=0)this.reset();} draw(){sCtx.beginPath();sCtx.arc(this.x,this.y,this.size,0,Math.PI*2);sCtx.fillStyle=`rgba(255,255,255,${this.opacity})`;sCtx.shadowBlur=4;sCtx.shadowColor="white";sCtx.fill();}}
+const particles=[];for(let i=0;i<600;i++)particles.push(new Particle());
+function animateStars(){sCtx.clearRect(0,0,sw,sh);for(let p of particles){p.update();p.draw();}requestAnimationFrame(animateStars);} animateStars();
 
-// ---- BACKGROUND SINE WAVE ----
 const bgCanvas = document.getElementById('backgroundWave');
 const bgCtx = bgCanvas.getContext('2d');
-bgCanvas.width = window.innerWidth;
-bgCanvas.height = window.innerHeight;
-window.addEventListener('resize', () => {
-  bgCanvas.width = window.innerWidth;
-  bgCanvas.height = window.innerHeight;
-});
-let t = 0;
-function drawBackgroundWave() {
-  bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
-  bgCtx.beginPath();
-  bgCtx.strokeStyle = "rgba(0,191,255,0.5)";
-  bgCtx.lineWidth = 2;
-  for (let x = 0; x < bgCanvas.width; x++) {
-    let y = bgCanvas.height/2 + Math.sin((x + t) * 0.02) * 50;
-    bgCtx.lineTo(x, y);
-  }
-  bgCtx.stroke();
-  t += 2;
-  requestAnimationFrame(drawBackgroundWave);
-}
-drawBackgroundWave();
-
-// ---- CIRCLE SINE WAVE ----
 const circleCanvas = document.getElementById('circleWave');
 const cCtx = circleCanvas.getContext('2d');
-circleCanvas.width = window.innerWidth;
-circleCanvas.height = window.innerHeight;
-window.addEventListener('resize', () => {
-  circleCanvas.width = window.innerWidth;
-  circleCanvas.height = window.innerHeight;
+
+function resizeCanvases() {
+    bgCanvas.width = window.innerWidth;
+    bgCanvas.height = window.innerHeight;
+    circleCanvas.width = window.innerWidth;
+    circleCanvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvases);
+resizeCanvases();
+
+const music = document.getElementById('music');
+const playBtn = document.getElementById('playBtn');
+
+let audioCtx, source, analyserBg, analyserCircle;
+let dataArrayBg, dataArrayCircle;
+let t = 0;
+
+playBtn.addEventListener('click', async () => {
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        source = audioCtx.createMediaElementSource(music);
+
+        // Background wave analyser
+        analyserBg = audioCtx.createAnalyser();
+        analyserBg.fftSize = 256;
+        dataArrayBg = new Uint8Array(analyserBg.frequencyBinCount);
+        source.connect(analyserBg);
+        analyserBg.connect(audioCtx.destination);
+
+        // Circle wave analyser
+        analyserCircle = audioCtx.createAnalyser();
+        analyserCircle.fftSize = 256;
+        dataArrayCircle = new Uint8Array(analyserCircle.frequencyBinCount);
+        source.connect(analyserCircle);
+        analyserCircle.connect(audioCtx.destination);
+
+        drawBackgroundWave();
+        drawCircleWave();
+        updateAudioData();
+    }
+
+    if (music.paused) {
+        await music.play();
+        playBtn.textContent = "⏸";
+    } else {
+        music.pause();
+        playBtn.textContent = "▶";
+    }
 });
-let audioCtx, analyser, source, dataArray;
+
+function updateAudioData() {
+    if (analyserBg) analyserBg.getByteFrequencyData(dataArrayBg);
+    if (analyserCircle) analyserCircle.getByteFrequencyData(dataArrayCircle);
+    requestAnimationFrame(updateAudioData);
+}
+
+// Background wave animation
+function drawBackgroundWave() {
+    bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+    let bgAmplitude = 50;
+    if (dataArrayBg) {
+        let bass = 0;
+        for (let i = 0; i < 30; i++) bass += dataArrayBg[i];
+        bgAmplitude = 10 + bass / 75;
+    }
+    bgCtx.beginPath();
+    bgCtx.strokeStyle = "rgba(0,191,255,0.3)";
+    bgCtx.lineWidth = 2;
+    for (let x = 0; x < bgCanvas.width; x++) {
+        let y = bgCanvas.height / 2 + Math.sin(x * 0.02 + t) * bgAmplitude;
+        if (x === 0) bgCtx.moveTo(x, y);
+        else bgCtx.lineTo(x, y);
+    }
+    bgCtx.stroke();
+    t += 0.04;
+    requestAnimationFrame(drawBackgroundWave);
+}
+
+// Circle wave animation
 function drawCircleWave() {
-  cCtx.clearRect(0,0,circleCanvas.width,circleCanvas.height);
-  const centerX = 70; // near button
-  const centerY = window.innerHeight - 80;
-  const radius = 28;
-  cCtx.beginPath();
-  cCtx.strokeStyle = "aqua";
-  cCtx.lineWidth = 2;
-  for (let angle=0; angle < Math.PI*2; angle+=0.02){
-    const i = Math.floor((angle / (2*Math.PI)) * (dataArray?dataArray.length:1));
-    const amplitude = dataArray ? dataArray[i]/5 : 0;
-    const r = radius + Math.sin(angle*6 + t*0.05) * amplitude;
-    const x = centerX + r * Math.cos(angle);
-    const y = centerY + r * Math.sin(angle);
-    if (angle===0) cCtx.moveTo(x,y); else cCtx.lineTo(x,y);
-  }
-  cCtx.closePath();
-  cCtx.stroke();
-  requestAnimationFrame(drawCircleWave);
+    cCtx.clearRect(0, 0, circleCanvas.width, circleCanvas.height);
+    const centerX = 70;
+    const centerY = window.innerHeight - 80;
+    const radius = 3;
+    let jump = 0;
+    if (dataArrayCircle) {
+        let bass = 0;
+        for (let i = 0; i < 10; i++) bass += dataArrayCircle[i];
+        jump = bass / 95;
+    }
+    cCtx.beginPath();
+    cCtx.strokeStyle = "aqua";
+    cCtx.lineWidth = 2;
+    for (let angle = -0.5*(Math.PI); angle <= Math.PI * 2; angle += 0.02) {
+        const i = Math.floor((angle / (2 * Math.PI)) * (dataArrayCircle ? dataArrayCircle.length : 1));
+        const waveAmp = dataArrayCircle ? dataArrayCircle[i] / 5 : 0;
+        const r = radius + Math.sin(angle * 6 + t * 0.5) * waveAmp + jump;
+        const x = centerX + r * Math.cos(angle);
+        const y = centerY + r * Math.sin(angle);
+        if (angle === 0) cCtx.moveTo(x, y);
+        else cCtx.lineTo(x, y);
+    }
+    cCtx.closePath();
+    cCtx.stroke();
+    requestAnimationFrame(drawCircleWave);
 }
 
-// ---- AUDIO CONTROLS ----
-const music=document.getElementById('music');
-const playBtn=document.getElementById('playBtn');
-music.volume=0.4;
-playBtn.addEventListener('click', async ()=>{
-  if(!audioCtx){
-    audioCtx = new (window.AudioContext||window.webkitAudioContext)();
-    analyser = audioCtx.createAnalyser();
-    source = audioCtx.createMediaElementSource(music);
-    source.connect(analyser);
-    analyser.connect(audioCtx.destination);
-    analyser.fftSize = 256;
-    dataArray = new Uint8Array(analyser.frequencyBinCount);
-    drawCircleWave();
-  }
-  if(music.paused){
-    await music.play();
-    playBtn.textContent="⏸";
-  } else {
-    music.pause();
-    playBtn.textContent="▶";
-  }
-});
-function updateAudioData(){
-  if(analyser) analyser.getByteFrequencyData(dataArray);
-  requestAnimationFrame(updateAudioData);
-}
-updateAudioData();
-const links = document.querySelectorAll('.topbar a');
-links.forEach(link => {
-  link.addEventListener('click', () => {
-    links.forEach(l => l.classList.remove('active'));
-    link.classList.add('active');
-  });
-});
-const lin = document.querySelectorAll('.topbar a');
-lin.forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    const target = document.querySelector(link.getAttribute('href'));
-    if(target){
-      window.scrollTo({
-        top: target.offsetTop - 70, // offset for fixed topbar
-        behavior: 'smooth'
-      });
-    }
-    lin.forEach(l => l.classList.remove('active'));
-    lin.classList.add('active');
-  });
-});
 
-// Highlight active link on scroll
-const sections = document.querySelectorAll('section');
-window.addEventListener('scroll', () => {
-  const scrollPos = window.scrollY + 80; // offset for topbar
-  sections.forEach(sec => {
-    if(scrollPos >= sec.offsetTop && scrollPos < sec.offsetTop + sec.offsetHeight){
-      links.forEach(l => l.classList.remove('active'));
-      const activeLink = document.querySelector(`.topbar a[href="#${sec.id}"]`);
-      if(activeLink) activeLink.classList.add('active');
-    }
-  });
-});
-
+// ---- NAVIGATION ----
+const links=document.querySelectorAll('.topbar a'); const sections=document.querySelectorAll('section');
+links.forEach(link=>{link.addEventListener('click',e=>{e.preventDefault();const target=document.querySelector(link.getAttribute('href'));if(target){window.scrollTo({top:target.offsetTop-70,behavior:'smooth'});}links.forEach(l=>l.classList.remove('active'));link.classList.add('active');});});
+window.addEventListener('scroll',()=>{const scrollPos=window.scrollY+80;sections.forEach(sec=>{if(scrollPos>=sec.offsetTop&&scrollPos<sec.offsetTop+sec.offsetHeight){links.forEach(l=>l.classList.remove('active'));const activeLink=document.querySelector(`.topbar a[href="#${sec.id}"]`);if(activeLink)activeLink.classList.add('active');}});});
 </script>
 </body>
 </html>
